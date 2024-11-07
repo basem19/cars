@@ -58,6 +58,8 @@ function App() {
     setTempColor([]);
     setProduct(defaultProductObj);
     closeModal();
+    closeEditModal();
+    closeConfirmModel();
   };
 
   const onchangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -84,7 +86,6 @@ function App() {
     });
   };
 
-
   const removeProductHandler = () => {
     const filterProduct = newProductList.filter(
       (productItem) => productItem.id !== productToEdit.id
@@ -92,11 +93,11 @@ function App() {
     setNewProductList(filterProduct);
     closeConfirmModel();
     toast.success("product has been deleted");
-};
+  };
   //-------------------Render function---------------------//
   const renderProduct = newProductList.map((product, index) => (
     <ProductCard
-      key={product.id} 
+      key={product.id}
       product={product}
       setProductToEdit={setProductToEdit}
       openEditModal={openEditModal}
@@ -183,7 +184,7 @@ function App() {
   };
 
   //------------------- submit function---------------------//
-  
+
   const submitHandler = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
@@ -216,7 +217,7 @@ function App() {
     closeModal();
     toast.success("product has been added successfully");
   };
-  
+
   const submitEditHandler = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
@@ -229,7 +230,6 @@ function App() {
     });
 
     const hasErrorMassage = Object.values(errors).some((value) => value !== "");
-
     if (hasErrorMassage) {
       setError(errors);
       return;
@@ -327,11 +327,12 @@ function App() {
             <div className="flex items-center space-x-3 ">
               <Button
                 className=" bg-gray-400 hover:bg-gray-600 w-full"
-                onClick={closeEditModal}
+                onClick={onCancel} type="button"
               >
                 Cancel
               </Button>
               <Button className=" bg-blue-600 hover:bg-blue-800 w-full">
+                
                 Submit
               </Button>
             </div>
@@ -346,7 +347,7 @@ function App() {
           <div className="flex items-center space-x-3 ">
             <Button
               className=" bg-gray-400 hover:bg-gray-600 w-full"
-              onClick={closeConfirmModel}
+              onClick={onCancel}
             >
               Cancel
             </Button>
@@ -360,7 +361,7 @@ function App() {
         </Modal>
         <Toaster />
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

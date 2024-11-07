@@ -26,13 +26,6 @@ export const productValidation = (product: IProductValidation) => {
     if (!product.price.trim() || (isNaN(Number(product.price)))) {
         errors.price = "Valid price is required!";
     }
-    // if (product.colors.length == 0) {
-    //     errors.colors = "Valid Color is required!";
-    // }
-    // console.log(product.colors.length);
-    // console.log(product.colors);
-    // console.log(product.price);
-    
     return errors
 }
 
