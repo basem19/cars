@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import { v4 as uuid } from "uuid";
 import toast, { Toaster } from "react-hot-toast";
 import { categories, colors, formInputsList, productList } from "./data";
@@ -46,13 +46,14 @@ function App() {
     price: "",
   });
 
+
   //-------------------Handler function---------------------//
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
-  const openEditModal = () => setIsOpenEditModel(true);
-  const closeEditModal = () => setIsOpenEditModel(false);
-  const openConfirmModel = () => setIsOpenConfirmModel(true);
-  const closeConfirmModel = () => setIsOpenConfirmModel(false);
+  const openModal = useCallback(() => setIsOpen(true), [])
+  const closeModal = useCallback(() => setIsOpen(false), [])
+  const openEditModal = useCallback(() => setIsOpenEditModel(true), [])
+  const closeEditModal = useCallback(() => setIsOpenEditModel(false), [])
+  const openConfirmModel = useCallback(() => setIsOpenConfirmModel(true), [])
+  const closeConfirmModel = useCallback(() => setIsOpenConfirmModel(false), [])
 
   const onCancel = () => {
     setTempColor([]);
@@ -62,29 +63,17 @@ function App() {
     closeConfirmModel();
   };
 
-  const onchangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const onchangeHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
-    setProduct({
-      ...product,
-      [name]: value,
-    });
-    setError({
-      ...error,
-      [name]: "",
-    });
-  };
+    setProduct(prev => ({ ...prev, [name]: value }));
+    setError(prev => ({ ...prev, [name]: "" }));
+  }, []);
 
-  const onchangeEditHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const onchangeEditHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
-    setProductToEdit({
-      ...productToEdit,
-      [name]: value,
-    });
-    setError({
-      ...error,
-      [name]: "",
-    });
-  };
+    setProductToEdit(prev => ({ ...prev, [name]: value }));
+    setError(prev => ({ ...prev, [name]: "" }));
+  }, []);
 
   const removeProductHandler = () => {
     const filterProduct = newProductList.filter(
@@ -332,7 +321,7 @@ function App() {
                 Cancel
               </Button>
               <Button className=" bg-blue-600 hover:bg-blue-800 w-full">
-                
+
                 Submit
               </Button>
             </div>

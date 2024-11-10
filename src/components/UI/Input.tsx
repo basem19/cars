@@ -1,14 +1,16 @@
-import { InputHTMLAttributes } from "react";
+import { forwardRef, InputHTMLAttributes, memo, Ref } from "react";
 
 type IProps = InputHTMLAttributes<HTMLInputElement>;
 
-const Input = ({ ...rest }: IProps) => {
+const Input = forwardRef(({ ...rest }: IProps, ref: Ref<HTMLInputElement>) => {
   return (
     <input
+      ref={ref}
       className="border-[1px] border-gray-300 shadow-md focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 rounded-lg px-3 py-3 text-md"
       {...rest}
     />
   );
-};
+})
 
-export default Input;
+export default memo(Input);
+

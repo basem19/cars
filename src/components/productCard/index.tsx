@@ -3,6 +3,7 @@ import { priceValidation, textSlicer } from "../../Utility/function";
 import Image from "../image";
 import Button from "../UI/Button";
 import Colors from "../color";
+import { memo } from "react";
 
 interface IProps {
   product: IProduct;
@@ -55,7 +56,6 @@ const ProductCard = ({
       </p>
 
       <div className="flex items-center flex-wrap space-x-1 flex-1">
-        {/* {renderColorsList} */}
         {!colors.length ? (
           <p className="min-h[20px]">Not Available Color!</p>
         ) : (
@@ -97,4 +97,4 @@ const ProductCard = ({
   );
 };
 
-export default ProductCard;
+export default memo(ProductCard);

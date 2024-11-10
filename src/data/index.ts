@@ -60,7 +60,7 @@ export const productList: IProduct[] = [
     id: uuid(),
     "title": "Porsche 911 Turbo S 2024",
     "description": "A high-performance sports car with a classic design and cutting-edge technology.",
-    "imageURL": "https://www.alainclass.com/wp-content/uploads/2023/04/2023-Porsche-911-Turbo-S-Cabriolet-Black-3239-10.jpg",
+    "imageURL": "https://bringatrailer.com/wp-content/uploads/2023/04/2021_porsche_911-turbo-s-coupe_2000_web-scaled.jpg?fit=940%2C627",
     "price": "225000",
     "colors": ["#000000", "#FFFFFF", "#E1E1E1", "#FF0000"],
     "category": {

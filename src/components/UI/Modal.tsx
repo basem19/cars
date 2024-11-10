@@ -1,5 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, ReactNode, useRef, useEffect } from "react";
+import { Fragment, ReactNode, useRef, useEffect, memo } from "react";
 
 interface IProps {
   isOpen: boolean;
@@ -31,7 +31,7 @@ const Modal = ({
           as="div"
           className="relative z-10"
           onClose={closeModal}
-          initialFocus={initialFocusRef} // Add this line to ensure focus works with HeadlessUI
+          initialFocus={initialFocusRef} 
         >
           <div className="fixed inset-0 backdrop-blur-sm" aria-hidden="true" />
           <Transition.Child
@@ -82,4 +82,4 @@ const Modal = ({
   );
 };
 
-export default Modal;
+export default memo(Modal);
